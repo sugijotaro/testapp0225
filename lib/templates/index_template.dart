@@ -25,7 +25,7 @@ class _IndexTemplateState extends State<IndexTemplate> {
             child: ListView.builder(
                 itemCount: widget.data!['body']["articles"] == null ? 0 : widget.data!['body']["articles"].length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container()
+                  return ArticleBodyOrganisms();
                 }
             )
         )
