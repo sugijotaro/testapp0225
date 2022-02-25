@@ -4,6 +4,7 @@ import 'event_list.dart';
 import 'twitter_profile.dart';
 import 'pages/index.dart';
 import 'stream_textbook/stream.dart';
+import 'color.dart';
 
 void main() {
   runApp(const MyApp());
@@ -121,6 +122,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyStreamApp()),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('color'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyColorApp()),
                 );
               },
             ),
