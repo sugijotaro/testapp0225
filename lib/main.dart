@@ -3,6 +3,7 @@ import 'package:testapp0225/calendar.dart';
 import 'event_list.dart';
 import 'twitter_profile.dart';
 import 'pages/index.dart';
+import 'bloc/screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -111,6 +112,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => TwitterProfile()),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('bloc'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalcScreen()),
                 );
               },
             ),

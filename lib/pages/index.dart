@@ -12,7 +12,7 @@ class _IndexState extends State<Index> {
   @override
   Widget build(BuildContext context) {
     final data = getData();
-    
+
     return Scaffold(
         body: Container(
       width: double.infinity,
