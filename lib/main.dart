@@ -3,7 +3,7 @@ import 'package:testapp0225/calendar.dart';
 import 'event_list.dart';
 import 'twitter_profile.dart';
 import 'pages/index.dart';
-import 'stream.dart';
+import 'stream_textbook/stream.dart';
 
 void main() {
   runApp(const MyApp());
