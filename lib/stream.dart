@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testapp0225/BusinessLogic.dart';
 import "dart:async";
+import 'package:testapp0225/main.dart';
 
 void main() {
   runApp(MyStreamApp());
@@ -86,6 +87,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Text(
                   'RANDOM : ${snapshot.data}',
                   style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('戻る'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
                 );
               },
             ),
