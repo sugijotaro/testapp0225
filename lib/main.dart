@@ -3,7 +3,7 @@ import 'package:testapp0225/calendar.dart';
 import 'event_list.dart';
 import 'twitter_profile.dart';
 import 'pages/index.dart';
-import 'bloc/screen.dart';
+import 'stream.dart';
 
 void main() {
   runApp(const MyApp());
@@ -116,11 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             RaisedButton(
-              child: Text('bloc'),
+              child: Text('stream'),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CalcScreen()),
+                  MaterialPageRoute(builder: (context) => MyStreamApp()),
                 );
               },
             ),
