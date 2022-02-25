@@ -15,8 +15,8 @@ class CalcBloc {
   Stream<bool> get onToggle => _btnController.stream;
 
   static const _repeat = 6;
-  int _sum = 0;
-  late Timer _timer;
+  int _sum;
+  Timer _timer;
 
   CalcBloc() {
     // スタートボタンが押されるのを待つ

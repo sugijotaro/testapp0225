@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:testapp0225/bloc/blocs/calc_provider.dart';
 import 'screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyBlocApp());
 
-class MyApp extends StatelessWidget {
+class MyBlocApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
