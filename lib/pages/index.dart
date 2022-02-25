@@ -12,13 +12,7 @@ class _IndexState extends State<Index> {
   @override
   Widget build(BuildContext context) {
     final data = getData();
-
-    // return SafeArea(
-    //   child: IndexTemplate(
-    //     data: data,
-    //   ),
-    // );
-
+    
     return Scaffold(
         body: Container(
       width: double.infinity,
