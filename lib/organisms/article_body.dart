@@ -16,9 +16,8 @@ class ArticleBodyOrganisms extends StatelessWidget {
   List<Widget> createArticles(BuildContext context) {
     if (data != null && data!.isNotEmpty) {
       final widgets = <Widget>[];
-
       for (final element in data!) {
-        final String day = element['day'];
+        final int day = element['day'];
         final String week = element['week'];
         final String title = element['title'];
         final String time_start = element['time_start'];
@@ -28,29 +27,33 @@ class ArticleBodyOrganisms extends StatelessWidget {
 
         final Widget widget = Container(
           padding: EdgeInsets.all(8),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Expanded(
-                flex: 1,
-                child: ArticleDay(
-                  day: day,
-                  week: week,
-                )),
-            SizedBox(width: 8),
-            Expanded(
-                flex: 5,
-                child: ArticleContents(
-                    title: title,
-                    time_start: time_start,
-                    time_end: time_end,
-                    location: location,
-                    number_of_participants: number_of_participants))
-          ]),
+          child: Column(
+            children: [
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Expanded(
+                    flex: 1,
+                    child: ArticleDay(
+                      day: day,
+                      week: week,
+                    )),
+                SizedBox(width: 8),
+                Expanded(
+                    flex: 5,
+                    child: ArticleContents(
+                        title: title,
+                        time_start: time_start,
+                        time_end: time_end,
+                        location: location,
+                        number_of_participants: number_of_participants)),
+              ]),
+            ],
+          ),
         );
 
         widgets.add(widget);
       }
       return widgets;
     }
-    return [Text("aaaa")];
+    return [Text("データがnullか0")];
   }
 }

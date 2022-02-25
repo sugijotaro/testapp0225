@@ -18,7 +18,7 @@ class _IndexTemplateState extends State<IndexTemplate> {
         ),
         body: Container(
           // child: Text("test"),
-            child: ArticleBodyOrganisms(data: widget.data!['articles'],)
+            child: ArticleBodyOrganisms(data: widget.data!['body']['articles'],)
         )
     );
 

@@ -124,7 +124,7 @@ class EventList extends StatelessWidget {
                                                 TextStyle(color: Colors.grey))
                                       ]),
                                 ),
-                                // SizedBox(height: 4),
+                                SizedBox(height: 4),
                                 Divider(color: Colors.grey)
                               ])))
                         ]),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ArticleDayText extends StatelessWidget {
   const ArticleDayText({Key? key, this.day}) : super(key: key);
-  final String? day;
+  final int? day;
 
   @override
   Widget build(BuildContext context) {

@@ -28,7 +28,9 @@ class ArticleContents extends StatelessWidget {
       SizedBox(height: 4),
       ArticleIconWithText(icon: Icons.pin_drop_rounded, text: location),
       SizedBox(height: 8),
-      ArticleIcons(number_of_participants: number_of_participants!)
+      ArticleIcons(number_of_participants: number_of_participants!),
+      SizedBox(height: 4),
+      Divider(color: Colors.grey),
     ]);
   }
 }

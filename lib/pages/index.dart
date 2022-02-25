@@ -13,13 +13,20 @@ class _IndexState extends State<Index> {
   Widget build(BuildContext context) {
     final data = getData();
 
-    return SafeArea(
+    // return SafeArea(
+    //   child: IndexTemplate(
+    //     data: data,
+    //   ),
+    // );
+
+    return Scaffold(
+        body: Container(
+      width: double.infinity,
       child: IndexTemplate(
         data: data,
       ),
-    );
+    ));
   }
-
 
   Map getData() {
     // ToDo: DBから値を取ってくる想定
@@ -39,8 +46,8 @@ class _IndexState extends State<Index> {
             'time_end': "21:00",
             'location': "参加上限：Re'F S+10人+ゲスト2名",
             'number_of_participants': 4
-          }, {
-
+          },
+          {
             "day": 5,
             "week": "日",
             "title": "13:00〜17:00,上村記念加賀スポセン,参加者：700円,締切済",
@@ -48,7 +55,8 @@ class _IndexState extends State<Index> {
             "time_end": "17:00",
             "location": "締切済：Re'F F + 10名+ゲスト2",
             "number_of_participants": 11
-          }, {
+          },
+          {
             "day": 8,
             "week": "水",
             "title": "18:00〜21:00,赤塚体育館,参加者：500円,締切11/30",

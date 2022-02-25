@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ArticleDay extends StatelessWidget {
   const ArticleDay({Key? key, this.day, this.week}) : super(key: key);
-  final String? day;
+  final int? day;
   final String? week;
 
   @override
