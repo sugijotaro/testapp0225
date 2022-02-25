@@ -1,7 +1,4 @@
-import 'package:atomic_design_web/components/core/organisms/article_body.dart';
-import 'package:atomic_design_web/components/core/organisms/footer.dart';
-import 'package:atomic_design_web/components/core/organisms/image_header.dart';
-import 'package:atomic_design_web/components/core/organisms/side_info_body.dart';
+import 'package:testapp0225/organisms/article_body.dart';
 import 'package:flutter/material.dart';
 
 class IndexTemplate extends StatefulWidget {
@@ -19,18 +16,24 @@ class _IndexTemplateState extends State<IndexTemplate> {
         appBar: AppBar(
           title: Text(widget.data!['title']),
         ),
-
         body: Container(
-            width: double.infinity,
-            child: ListView.builder(
-                itemCount: widget.data!['body']["articles"] == null ? 0 : widget.data!['body']["articles"].length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ArticleBodyOrganisms();
-                }
-            )
+          // child: Text("test"),
+            child: ArticleBodyOrganisms(data: widget.data!['articles'],)
         )
+    );
 
+        // body: Container(
+        //     width: double.infinity,
+        //     child: ListView.builder(
+        //         itemCount: widget.data!['body']["articles"] == null ? 0 : widget.data!['body']["articles"].length,
+        //         itemBuilder: (BuildContext context, int index) {
+        //           return ArticleBodyOrganisms();
+        //         }
+        //     )
+        // )
 
-    )
+        // body: Container(
+        //     width: double.infinity,
+        //     child: ListView(children: ArticleBodyOrganisms())));
   }
 }

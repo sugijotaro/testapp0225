@@ -1,6 +1,5 @@
-import 'package:atomic_design_web/components/core/moleculus/article_badges.dart';
-import 'package:atomic_design_web/components/core/moleculus/article_contents.dart';
-import 'package:atomic_design_web/components/core/moleculus/article_title.dart';
+import 'package:testapp0225/molecules/article_day.dart';
+import 'package:testapp0225/molecules/article_contents.dart';
 import 'package:flutter/material.dart';
 
 class ArticleBodyOrganisms extends StatelessWidget {
@@ -52,6 +51,6 @@ class ArticleBodyOrganisms extends StatelessWidget {
       }
       return widgets;
     }
-    return [Container()];
+    return [Text("aaaa")];
   }
 }

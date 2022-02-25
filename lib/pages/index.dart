@@ -24,7 +24,7 @@ class _IndexState extends State<Index> {
   Map getData() {
     // ToDo: DBから値を取ってくる想定
     return {
-      'title': 'イベントリスト',
+      'title': 'イベントリスト atomic',
       // 'header': {
       //   'title': 'Atomic Design',
       //   'imagePath': 'assets/nekohack_logo.png',

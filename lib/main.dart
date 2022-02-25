@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:testapp0225/calendar.dart';
 import 'event_list.dart';
 import 'twitter_profile.dart';
+import 'pages/index.dart';
 
 void main() {
   runApp(const MyApp());
@@ -75,38 +76,47 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         width: double.infinity,
         child: Column(
-            children: [
+          children: [
             Text("ああああ"),
-        RaisedButton(
-          child: Text('カレンダー'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Calendar()),
-            );
-          },
+            RaisedButton(
+              child: Text('カレンダー'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Calendar()),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('イベントリスト'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EventList()),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('イベントリスト atomic design'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Index()),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('twitter風プロフィール画面'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TwitterProfile()),
+                );
+              },
+            ),
+          ],
         ),
-        RaisedButton(
-          child: Text('イベントリスト'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => EventList()),
-            );
-          },
-        ),
-        RaisedButton(
-          child: Text('twitter風プロフィール画面'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TwitterProfile()),
-            );
-          },
-        ),
-      ],
-    ),)
-    ,
+      ),
     );
   }
 }
