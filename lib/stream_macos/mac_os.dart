@@ -1,50 +1,54 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:testapp0225/color_bl.dart';
-import 'package:testapp0225/main.dart';
+import 'package:testapp0225/stream_macos/mac_os_logic.dart';
 import "dart:async";
+import 'package:testapp0225/main.dart';
 
-String? color_code;
+void main() {
+  runApp(MacOSApp());
+}
 
-class MyColorApp extends StatelessWidget {
+class MacOSApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'color change bloc Demo',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyColorHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Mac OS Code Name'),
     );
   }
 }
 
-class MyColorHomePage extends StatefulWidget {
-  MyColorHomePage({Key? key, this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, this.title}) : super(key: key);
   final String? title;
 
   @override
-  _MyColorHomePageState createState() => _MyColorHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyColorHomePageState extends State<MyColorHomePage> {
+class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  var colorCodeStringStream = StreamController<String>();
+  var intStream = StreamController<int>();
 
-  var colorStream = StreamController<Color>.broadcast();
-  var input = new Input(color_code ?? "ffffff");
+  var stringStream = StreamController<String>.broadcast();
+  var generator = new Generator();
   var coodinator = new Coordinator();
   var consumer = new Consumer();
 
   void _incrementCounter() {
-    input;
+    generator.generate();
+    setState(() {
+      _counter++;
+    });
   }
 
   @override
   void initState() {
-    input.init(colorCodeStringStream);
-    coodinator.init(colorCodeStringStream, colorStream);
-    consumer.init(colorStream);
+    generator.init(intStream);
+    coodinator.init(intStream, stringStream);
+    consumer.init(stringStream);
     coodinator.coorinate();
     consumer.consume();
 
@@ -53,8 +57,8 @@ class _MyColorHomePageState extends State<MyColorHomePage> {
 
   @override
   void dispose() {
-    colorCodeStringStream.close();
-    colorStream.close();
+    intStream.close();
+    stringStream.close();
     super.dispose();
   }
 
@@ -77,7 +81,7 @@ class _MyColorHomePageState extends State<MyColorHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             StreamBuilder<String>(
-              stream: colorCodeStringStream.stream,
+              stream: stringStream.stream,
               initialData: "",
               builder: (context, snapshot) {
                 return Text(

@@ -4,7 +4,7 @@ import 'event_list.dart';
 import 'twitter_profile.dart';
 import 'pages/index.dart';
 import 'stream_textbook/stream.dart';
-import 'color.dart';
+import 'stream_macos/mac_os.dart';
 
 void main() {
   runApp(const MyApp());
@@ -126,11 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             RaisedButton(
-              child: Text('color'),
+              child: Text('macOSコードネーム'),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyColorApp()),
+                  MaterialPageRoute(builder: (context) => MacOSApp()),
                 );
               },
             ),
