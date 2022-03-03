@@ -3,6 +3,8 @@ import 'package:testapp0225/stream_macos/mac_os_logic.dart';
 import "dart:async";
 import 'package:testapp0225/main.dart';
 
+double version = 0.0;
+
 void main() {
   runApp(MacOSApp());
 }
@@ -29,25 +31,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  var intStream = StreamController<int>();
+  // int _counter = 0;
+  var doubleStream = StreamController<double>();
 
   var stringStream = StreamController<String>.broadcast();
-  var generator = new Generator();
+  var receiver = new Receiver();
   var coodinator = new Coordinator();
   var consumer = new Consumer();
 
   void _incrementCounter() {
-    generator.generate();
+    receiver.receive(version);
     setState(() {
-      _counter++;
+      // _counter++;
     });
   }
 
   @override
   void initState() {
-    generator.init(intStream);
-    coodinator.init(intStream, stringStream);
+    receiver.init(doubleStream);
+    coodinator.init(doubleStream, stringStream);
     consumer.init(stringStream);
     coodinator.coorinate();
     consumer.consume();
@@ -57,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    intStream.close();
+    doubleStream.close();
     stringStream.close();
     super.dispose();
   }
@@ -72,42 +74,54 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              key: Key('counter'),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            StreamBuilder<String>(
-              stream: stringStream.stream,
-              initialData: "",
-              builder: (context, snapshot) {
-                return Text(
-                  'RANDOM : ${snapshot.data}',
-                  style: Theme.of(context).textTheme.headline4,
-                );
-              },
-            ),
-            RaisedButton(
-              child: Text('戻る'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
-                );
-              },
-            ),
-          ],
+        TextField(
+          decoration: InputDecoration(
+          hintText: 'macOS（Mac OS X）バージョンを入力',
         ),
+        onChanged: (text) {
+          version = double.parse(text);
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        key: Key('increment'),
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+            RaisedButton(
+              child: Text('決定'),
+              onPressed: () {
+                receiver.receive(version);
+              },
+            ),
+      StreamBuilder<String>(
+        stream: stringStream.stream,
+        initialData: "",
+        builder: (context, snapshot) {
+          return Text(
+            'Code Name : ${snapshot.data}',
+            style: Theme
+                .of(context)
+                .textTheme
+                .headline4,
+          );
+        },
+      ),
+      RaisedButton(
+        child: Text('戻る'),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyApp()),
+          );
+        },
+      ),
+      ],
+    ),
+    ),
+    // floatingActionButton: FloatingActionButton(
+    // key: Key('increment'),
+    // onPressed: _incrementCounter,
+    // tooltip: 'Increment',
+    // child: Icon(Icons.
+    // add
+    // )
+    // ,
+    // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
