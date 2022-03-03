@@ -120,3 +120,4 @@ app.*.symbols
 
 ios/Runner/GoogleService-Info.plist
 
+android/google-services.json
