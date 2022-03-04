@@ -1,4 +1,6 @@
+import 'package:fcm_config/fcm_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:testapp0225/calendar.dart';
 import 'event_list.dart';
 import 'twitter_profile.dart';
@@ -10,16 +12,43 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-Future<void> main() async {
-  // Firebaseの初期化用
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+}
 
+void main() async {
+  await FCMConfig.instance.init(
+    defaultAndroidForegroundIcon: '@mipmap/ic_launcher',
+    //default is @mipmap/ic_launcher
+    defaultAndroidChannel: AndroidNotificationChannel(
+      'high_importance_channel', // same as value from android setup
+      'Fcm config',
+      importance: Importance.high,
+      sound: RawResourceAndroidNotificationSound('notification'),
+    ),
+  );
+  final token = await FCMConfig.instance.messaging.getToken();
+  print("aaa");
+  print(token);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  // const AndroidNotificationChannel channel = AndroidNotificationChannel(
+  //   'high_importance_channel', // id
+  //   'High Importance Notifications', // title
+  //   description: 'This channel is used for important notifications.',// / description
+  //   importance: Importance.max,
+  // );
+  //
+  // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  // FlutterLocalNotificationsPlugin();
+  //
+  // await flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.createNotificationChannel(channel);
 
   // This widget is the root of your application.
   @override
@@ -75,7 +104,31 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future<void> dialog() {
+    return showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("通知"),
+          content: Text("通知がきました"),
+          actions: <Widget>[
+            // ボタン領域
+            TextButton(
+              child: Text("Cancel"),
+              onPressed: () => Navigator.pop(context),
+            ),
+            TextButton(
+              child: Text("OK"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   final items = List<String>.generate(10000, (i) => "Item $i");
+
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +195,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+        // Text(token.toString()),
+        FCMNotificationListener(
+          onNotification: (RemoteMessage notification, _) async {
+            await dialog();
+          }, child: Text("a"),),
           ],
         ),
       ),
