@@ -6,8 +6,16 @@ import 'pages/index.dart';
 import 'stream_textbook/stream.dart';
 import 'stream_macos/mac_os.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+Future<void> main() async {
+  // Firebaseの初期化用
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
