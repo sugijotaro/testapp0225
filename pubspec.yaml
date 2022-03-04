@@ -39,6 +39,10 @@ dependencies:
   firebase_core: ^1.13.1
   flutter_local_notifications: ^9.3.3
   fcm_config: ^3.3.4
+  firebase_dynamic_links: ^4.0.8
+  firebase_auth_rest: ^2.0.3
+  firebase_database_rest: ^1.0.3
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:

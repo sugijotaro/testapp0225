@@ -11,6 +11,7 @@ import 'stream_macos/mac_os.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 
 Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
@@ -30,6 +31,12 @@ void main() async {
   final token = await FCMConfig.instance.messaging.getToken();
   print("aaa");
   print(token);
+
+  // FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+  // Android only
+  FirebaseApp secondaryApp = Firebase.app('SecondaryApp');
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instanceFor(app: secondaryApp);
+
   runApp(MyApp());
 }
 
