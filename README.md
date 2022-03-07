@@ -16,13 +16,4 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-https://testapp0225.com
-
-
-[Deep Links](app://testapp0225/)
-app://testapp0225/
-
-
-
-[App Links](http://testapp0225.com/)
-http://testapp0225.com/
+https://testapp0225.page.link/test1
