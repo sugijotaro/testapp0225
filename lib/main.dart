@@ -12,6 +12,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+
 Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
   print("Handling a background message: ${message.messageId}");
 }
@@ -100,7 +102,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _deepLink = "null";
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
   int _counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initDynamicLinks();
+    print("aaaaaaaaaaaaaaaaaa");
+  }
+
+  Future<void> initDynamicLinks() async {
+    print("bbbbbbbbbbbbbbbbbb");
+    dynamicLinks.onLink.listen((dynamicLinkData) {
+      print("cccccccccccccccccc");
+      Navigator.pushNamed(context, dynamicLinkData.link.path);
+      print("context:$context");
+      print("ディープリンクURL:${dynamicLinkData.link}");
+      setState(() {
+        _deepLink = dynamicLinkData.link.toString();
+      });
+    }).onError((error) {
+      print("ddddddddddddddddddd");
+      print('onLink error');
+      print(error.message);
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -137,7 +165,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final items = List<String>.generate(10000, (i) => "Item $i");
-
 
   @override
   Widget build(BuildContext context) {
@@ -204,14 +231,53 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-        // Text(token.toString()),
-        FCMNotificationListener(
-          onNotification: (RemoteMessage notification, _) async {
-            await dialog();
-          }, child: Text("a"),),
+            Text(
+              'Dynamic Link',
+            ),
+            Text(
+              _deepLink,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            FCMNotificationListener(
+              onNotification: (RemoteMessage notification, _) async {
+                await dialog();
+              },
+              child: Text("a"),
+            ),
           ],
         ),
       ),
     );
   }
+
+// void _initDynamicLinks() async {
+// 2. FirebaseDynamicLinksのpackageで提供されているメソッド
+// FirebaseDynamicLinks.instance.onLink(onSuccess: (PendingDynamicLinkData dynamicLink) async {
+//   final Uri deepLink = dynamicLink?.link;
+//
+//   if (deepLink != null) {
+//     // 3. アプリ立ち上げ中に即時実行するとnullが渡る可能性があるので2~3秒停止
+//     await Future.delayed(Duration(seconds: 3));
+//     setState(() {
+//       _deepLink = deepLink.toString();
+//     });
+//   }
+// }, onError: (OnLinkErrorException e) async {
+//   print('onLinkError');
+//   print(e.message);
+// });
+// print("initDynamicLinks");
+// FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
+//   Navigator.pushNamed(context, dynamicLinkData.link.path);
+//   print("できた！");
+//   print(context);
+//   print("dynamicLinkData.link.path");
+//   _deepLink = dynamicLinkData.link.path.toString();
+// }).onError((error) {
+//     print('onLinkError');
+//     print(error);
+// });
+
+// }
+
 }

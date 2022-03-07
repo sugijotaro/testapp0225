@@ -96,28 +96,28 @@
             </intent-filter>
 
             <!-- Deep Links -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-                <data
-                    android:host="testapp0225"
-                    android:scheme="app" />
-            </intent-filter>
+<!--                <data-->
+<!--                    android:host="testapp0225"-->
+<!--                    android:scheme="app" />-->
+<!--            </intent-filter>-->
 
             <!-- App Links -->
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter android:autoVerify="true">-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-                <data
-                    android:host="testapp0225.com"
-                    android:scheme="http" />
-            </intent-filter>
+<!--                <data-->
+<!--                    android:host="testapp0225.com"-->
+<!--                    android:scheme="http" />-->
+<!--            </intent-filter>-->
         </activity>
         <meta-data
             android:name="flutterEmbedding"
