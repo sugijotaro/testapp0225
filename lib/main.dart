@@ -7,6 +7,7 @@ import 'twitter_profile.dart';
 import 'pages/index.dart';
 import 'stream_textbook/stream.dart';
 import 'stream_macos/mac_os.dart';
+import 'stream_water_breathing/water_breathing.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -243,6 +244,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 await dialog();
               },
               child: Text("a"),
+            ),
+            RaisedButton(
+              child: Text('水の呼吸'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WaterBreathingApp()),
+                );
+              },
             ),
           ],
         ),
